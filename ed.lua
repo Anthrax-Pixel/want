@@ -30,14 +30,14 @@ RunService.Heartbeat:Connect(function(deltaTime)
 	local rightArmRotation = -math.sin(angle) * rotationAmount
 	local headRotation = math.cos(angle) * rotationAmount
 
-	-- Apply the rotations to the Motor6D joints (arms and head)
+	-- Apply rotations to the Motor6D joints (arms and head)
 	if leftArmMotor then
-		leftArmMotor.C0 = CFrame.Angles(0, leftArmRotation, 0)
+		leftArmMotor.C0 = CFrame.new(leftArmMotor.C0.Position) * CFrame.Angles(0, leftArmRotation, 0)
 	end
 	if rightArmMotor then
-		rightArmMotor.C0 = CFrame.Angles(0, rightArmRotation, 0)
+		rightArmMotor.C0 = CFrame.new(rightArmMotor.C0.Position) * CFrame.Angles(0, rightArmRotation, 0)
 	end
 	if neck then
-		neck.C0 = CFrame.Angles(headRotation, 0, 0)
+		neck.C0 = CFrame.new(neck.C0.Position) * CFrame.Angles(headRotation, 0, 0)
 	end
 end)

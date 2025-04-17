@@ -1,5 +1,3 @@
--- LocalScript — place it in StarterPlayerScripts or a GUI button callback
-
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local head = character:WaitForChild("Head")
@@ -17,8 +15,11 @@ alignOrientation.Parent = head
 -- Spin speed (in radians per second)
 local spinSpeed = 5
 
+-- Get RunService once at the top
+local RunService = game:GetService("RunService")
+
 -- Run the spinning loop
-game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+RunService.Heartbeat:Connect(function(deltaTime)
 	local currentOrientation = attachment.Orientation
 	attachment.Orientation = Vector3.new(
 		currentOrientation.X,
@@ -26,3 +27,4 @@ game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
 		currentOrientation.Z
 	)
 end)
+

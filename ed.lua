@@ -20,9 +20,7 @@ local leftLegMotor = leftLeg:FindFirstChildWhichIsA("Motor6D")
 local rightLegMotor = rightLeg:FindFirstChildWhichIsA("Motor6D")
 
 -- Macarena steps control (timing and angle)
-local stepAngle = math.rad(45)  -- How much to rotate the arms and legs each step
-local speed = 1.5  -- Speed of the dance
-
+local speed = 1  -- Speed of the dance
 local stepTime = 1 / speed  -- Time for each step
 local currentStep = 0
 
@@ -33,32 +31,32 @@ local function animateStep(step)
     local leftArmRotation, rightArmRotation, leftLegRotation, rightLegRotation, headRotation
 
     if step == 0 then
-        -- Position for first step of Macarena
-        leftArmRotation = math.rad(90)
-        rightArmRotation = math.rad(-90)
-        leftLegRotation = math.rad(90)
-        rightLegRotation = math.rad(-90)
+        -- Step 1: Arms raised forward and bent, legs straight
+        leftArmRotation = math.rad(90)  -- Left arm forward
+        rightArmRotation = math.rad(-90)  -- Right arm forward
+        leftLegRotation = 0  -- Legs straight
+        rightLegRotation = 0  -- Legs straight
         headRotation = 0
     elseif step == 1 then
-        -- Second step of Macarena
-        leftArmRotation = math.rad(-45)
-        rightArmRotation = math.rad(45)
-        leftLegRotation = math.rad(-45)
-        rightLegRotation = math.rad(45)
+        -- Step 2: Left arm up, right arm up, legs spread apart
+        leftArmRotation = math.rad(45)  -- Left arm up
+        rightArmRotation = math.rad(45)  -- Right arm up
+        leftLegRotation = math.rad(45)  -- Left leg bent
+        rightLegRotation = math.rad(-45)  -- Right leg bent
         headRotation = math.rad(5)
     elseif step == 2 then
-        -- Third step of Macarena
-        leftArmRotation = math.rad(90)
-        rightArmRotation = math.rad(-90)
-        leftLegRotation = math.rad(90)
-        rightLegRotation = math.rad(-90)
-        headRotation = math.rad(10)
+        -- Step 3: Arms down, legs straight, head slightly tilted
+        leftArmRotation = 0  -- Left arm down
+        rightArmRotation = 0  -- Right arm down
+        leftLegRotation = 0  -- Legs straight
+        rightLegRotation = 0  -- Legs straight
+        headRotation = math.rad(5)
     elseif step == 3 then
-        -- Fourth step of Macarena
-        leftArmRotation = math.rad(-45)
-        rightArmRotation = math.rad(45)
-        leftLegRotation = math.rad(-45)
-        rightLegRotation = math.rad(45)
+        -- Step 4: Arms crossed, legs crossed
+        leftArmRotation = math.rad(-45)  -- Left arm across
+        rightArmRotation = math.rad(45)  -- Right arm across
+        leftLegRotation = math.rad(45)  -- Left leg bent
+        rightLegRotation = math.rad(-45)  -- Right leg bent
         headRotation = math.rad(5)
     end
 

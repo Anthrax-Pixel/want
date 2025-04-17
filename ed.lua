@@ -6,14 +6,11 @@ local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local rootPart = character:WaitForChild("HumanoidRootPart")
 
--- Invert character orientation (rotate by 180 degrees)
+-- Invert character orientation (rotate by 180 degrees once)
 rootPart.CFrame = rootPart.CFrame * CFrame.Angles(math.rad(180), 0, 0)
 
--- Set gravity for the local player
-workspace.Gravity = -196.2
-
--- Optional: Loop to ensure the character stays upside down
+-- Keep the character upside down permanently without changing gravity
 while true do
     wait(0.1)
-    rootPart.CFrame = rootPart.CFrame * CFrame.Angles(math.rad(180), 0, 0)
+    rootPart.CFrame = CFrame.new(rootPart.Position) * CFrame.Angles(math.rad(180), 0, 0)
 end

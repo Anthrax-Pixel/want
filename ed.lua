@@ -1,17 +1,28 @@
--- LocalScript (Inside StarterCharacterScripts)
+-- LocalScript — place it in StarterPlayerScripts or a GUI button callback
+
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
+local head = character:WaitForChild("Head")
 
--- Wait for the Humanoid and HumanoidRootPart to load
-local humanoid = character:WaitForChild("Humanoid")
-local rootPart = character:WaitForChild("HumanoidRootPart")
+-- Create an attachment and align orientation to spin the head
+local attachment = Instance.new("Attachment", head)
 
--- Invert character orientation (rotate by 180 degrees once)
-rootPart.CFrame = rootPart.CFrame * CFrame.Angles(math.rad(180), 0, 0)
+local alignOrientation = Instance.new("AlignOrientation")
+alignOrientation.Attachment0 = attachment
+alignOrientation.RigidityEnabled = true
+alignOrientation.MaxTorque = math.huge
+alignOrientation.Responsiveness = 200
+alignOrientation.Parent = head
 
--- Keep the character upside down permanently without toggling
-while true do
-    wait(0.1)
-    -- This line will keep the character upside down at all times without affecting movement
-    rootPart.CFrame = CFrame.new(rootPart.Position) * CFrame.Angles(math.rad(180), 0, 0)
-end
+-- Spin speed (in radians per second)
+local spinSpeed = 5
+
+-- Run the spinning loop
+game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+	local currentOrientation = attachment.Orientation
+	attachment.Orientation = Vector3.new(
+		currentOrientation.X,
+		currentOrientation.Y + math.deg(spinSpeed * deltaTime),
+		currentOrientation.Z
+	)
+end)

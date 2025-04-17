@@ -1,4 +1,4 @@
--- LocalScript — place this in StarterPlayerScripts
+--update 2222222
 
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()

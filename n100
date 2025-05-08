@@ -1,1 +1,1 @@
-raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/universal
+game.Players.LocalPlayer:Kick("This game is not supported.")
